@@ -1,0 +1,17 @@
+.container {
+  padding: 0 5px;
+  background-color: aqua;
+  min-height: 91vh;
+  display: block;
+  header {
+    padding: 20px 0;
+  }
+  .pageTitle {
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px auto;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+  }
+}
