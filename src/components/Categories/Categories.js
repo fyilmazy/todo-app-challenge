@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const Categories = () => {
   const { selectedCategory, setSelectedCategory } = useContext(TodoContext);
+
+  const selectCategory = () => {};
   return (
     <div className={styles.container}>
       <div className={styles.title}>

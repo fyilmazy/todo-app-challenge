@@ -18,7 +18,7 @@ const MainPage = () => {
   return (
     <div className={styles.mainPage}>
       <header>
-        <div className={styles.pageTitle}>Main Page</div>
+        <div className={styles.pageTitle}>Todo App Challenge</div>
       </header>
       <div className={styles.innerFrame}>
         {!isLoggedIn ? (
