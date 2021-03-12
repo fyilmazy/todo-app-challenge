@@ -1,15 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 import { MainContext } from "../../context/MainContext";
-// import { Modal, Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal, Button, Backdrop, Fade, TextField } from "@material-ui/core";
+import { Modal, TextField } from "@material-ui/core";
 
 const UserDialog = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [open, setOpen] = useState(true);
   const [modalStyle] = useState(getModalStyle);
+  const [isFormValid, setIsFormValid] = useState(null);
 
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
@@ -18,7 +17,12 @@ const UserDialog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(name, surname);
+    if (name !== "" && surname !== "") {
+      setIsFormValid(true);
+      handleLogin(name, surname);
+    } else {
+      setIsFormValid(false);
+    }
   };
 
   function getModalStyle() {
@@ -33,7 +37,7 @@ const UserDialog = () => {
 
   useEffect(() => {
     isLoggedIn ? handleClose() : handleOpen();
-  }, []);
+  }, [isLoggedIn]);
 
   const useStyles = makeStyles((theme) => ({
     backgroundWrapper: {
@@ -97,6 +101,13 @@ const UserDialog = () => {
           value={surname}
         />
         <button type="submit">Submit</button>
+        {isFormValid === false ? (
+          <div className={classes.formWarning}>
+            <p>Please fill the form correctly.</p>
+          </div>
+        ) : (
+          ""
+        )}
       </form>
     </div>
   );

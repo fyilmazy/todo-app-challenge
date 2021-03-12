@@ -6,15 +6,29 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateTodo = () => {
-  const { todo, setTodo, createTodoHandler } = useContext(TodoContext);
+  const { CATEGORY, addCard } = useContext(TodoContext);
+
+  const newCard = {
+    title: "",
+    id: uuidv4(),
+    category: CATEGORY.WORK,
+    todos: [
+      {
+        text: "Example Todo",
+        id: uuidv4(),
+        isComplete: false,
+      },
+    ],
+  };
 
   const useStyles = makeStyles({
     root: {
       minWidth: 275,
       margin: "auto 10px",
-      minHeight: 200,
+      minHeight: 244,
     },
     bullet: {
       display: "inline-block",
@@ -35,7 +49,7 @@ const CreateTodo = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} key={uuidv4()}>
       <CardContent>
         <Typography
           className={classes.title}
@@ -46,9 +60,9 @@ const CreateTodo = () => {
         </Typography>
       </CardContent>
       <Button
-        size="big"
+        size="large"
         className={classes.createButton}
-        onClick={createTodoHandler}
+        onClick={() => addCard(newCard)}
       >
         Create New
       </Button>

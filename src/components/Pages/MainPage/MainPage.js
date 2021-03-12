@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styles from "./MainPage.module.scss";
 import { MainContext } from "../../../context/MainContext";
 import TodoContainer from "../../TodoContainer/TodoContainer";
-import CreateTodo from "../../CreateTodo/CreateTodo";
 // import {
 //   BrowserRouter as Router,
 //   Link,
@@ -22,17 +21,18 @@ const MainPage = () => {
         <div className={styles.pageTitle}>Main Page</div>
       </header>
       <div className={styles.innerFrame}>
-        <div className={styles.leftFrame}>
-          <UserCard />
-          <Categories />
-        </div>
-
         {!isLoggedIn ? (
           <UserDialog />
         ) : (
-          <div className={styles.container}>
-            <TodoContainer />
-          </div>
+          <>
+            <div className={styles.leftFrame}>
+              <UserCard />
+              <Categories />
+            </div>
+            <div className={styles.container}>
+              <TodoContainer />
+            </div>
+          </>
         )}
       </div>
     </div>

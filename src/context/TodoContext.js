@@ -1,51 +1,42 @@
 import React, { useState, useEffect, createContext } from "react";
+import { newId } from "../utils/idCreator";
 export const TodoContext = createContext();
 
 // Card = {
+//   id: uuidv4 string
 //   title: string
 //   category: enum
 //   todos: Todo[]
 // }
 
-const CATEGORY = {
+// Todo = {
+//   id: uuidv4 string
+//   text: string
+//   isComplete: boolean
+// }
+
+export const CATEGORY = {
   EVERYTHING: "EVERYTHING",
   WORK: "WORK",
   PERSONAL: "PERSONAL",
   SCHOOL: "SCHOOL",
 };
 
-// Todo = {
-//   text: string
-//   isComplete: boolean
-// }
-
 export const TodoProvider = ({ children }) => {
-  const [todo, setTodo] = useState([]);
-  const [cards, setCards] = useState([
-    {
-      title: "Example Card",
-      category: CATEGORY.WORK,
-      todos: [
-        {
-          text: 'Example TODO',
-          isComplete: false
-        }, 
-        {
-          text: 'Example Complet TODO',
-          isComplete: false
-        }, 
-      ],
-    },
-  ]);
+  const [cards, setCards] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const createTodoHandler = () => {
-    console.log("CreateTodo Card Created");
+  const addCard = (newCard) => {
+    setCards([...cards, newCard]);
   };
 
   const values = {
-    todo,
-    setTodo,
-    createTodoHandler,
+    cards,
+    CATEGORY,
+    setCards,
+    addCard,
+    selectedCategory,
+    setSelectedCategory,
   };
 
   useEffect(() => {}, []);

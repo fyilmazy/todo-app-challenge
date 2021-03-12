@@ -14,6 +14,7 @@ export const MainProvider = ({ children }) => {
   const handleLogin = (name, surname) => {
     console.log("user data written to local storage & logged in");
     localStorageSet("userData", { name, surname });
+    setUserData({ name, surname });
     setIsLoggedIn(true);
   };
 
