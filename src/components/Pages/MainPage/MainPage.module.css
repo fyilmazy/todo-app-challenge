@@ -1,0 +1,50 @@
+.mainPage {
+  padding: 0 5px;
+  background-color: aqua;
+  min-height: 91vh;
+  display: block;
+}
+
+.mainPage header {
+  padding: 20px 0;
+}
+
+.mainPage .pageTitle {
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px auto;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.innerFrame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 100vh;
+}
+
+.leftFrame {
+  width: 15%;
+  height: 100vh;
+  background-color: azure;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.links {
+  text-decoration: none;
+  color: red;
+}
+/*# sourceMappingURL=MainPage.module.css.map */

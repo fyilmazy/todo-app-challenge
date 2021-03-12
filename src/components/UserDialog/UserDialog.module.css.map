@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,mBAAmB,CAAC;EAClB,UAAU,EAAE,kBAAkB;CAC/B;;AAED,AAAA,yBAAyB,CAAC;EACxB,UAAU,EAAE,kBAAkB;CAC/B",
+    "sources": [
+        "UserDialog.module.scss"
+    ],
+    "names": [],
+    "file": "UserDialog.module.css"
+}

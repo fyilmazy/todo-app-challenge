@@ -1,0 +1,39 @@
+.nav {
+  background-color: #c5c5c5;
+  padding: 20px 0;
+  margin: 0;
+  height: 3vh;
+}
+
+.links {
+  color: red;
+  text-decoration: none;
+  padding: 10px 0px;
+  margin: 0px 10px !important;
+  display: inline;
+  height: 3vh;
+  position: relative;
+}
+
+.links :hover {
+  color: blue;
+  background-color: aquamarine;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline;
+  height: 100%;
+  padding: 20px 0;
+}
+
+li a {
+  padding: 20 px 0;
+}
+/*# sourceMappingURL=Nav.module.css.map */

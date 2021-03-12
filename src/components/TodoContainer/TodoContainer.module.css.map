@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAc;EACrC,QAAQ,EAAE,IAAI;CACf",
+    "sources": [
+        "TodoContainer.module.scss"
+    ],
+    "names": [],
+    "file": "TodoContainer.module.css"
+}
