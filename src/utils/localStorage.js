@@ -36,7 +36,7 @@ function localStorageGet(key) {
 function localStorageSet(key, value) {
   if (value === undefined) throw new Error("Can't store undefinded value");
 
-  if (typeof value === "object" || typeof value === "array") {
+  if (typeof value === "object" || Array.isArray(value)) {
     value = JSON.stringify(value);
   }
 

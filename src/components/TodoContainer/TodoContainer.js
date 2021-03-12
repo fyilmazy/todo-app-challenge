@@ -6,25 +6,12 @@ import TodoCard from "../TodoCard/TodoCard";
 
 const TodoContainer = () => {
   const { cards } = useContext(TodoContext);
-  console.log("cards", cards);
 
   return (
     <div className={styles.todoContainer}>
-      {cards.map((card, index) => {
-        console.log("map içi card:", card);
-        return (
-          <TodoCard
-            data={[
-              {
-                title: card.title,
-                id: card.id,
-                todos: card.todos,
-                category: card.category,
-              },
-            ]}
-          />
-        );
-      })}
+      {cards.map((card, index) => (
+        <TodoCard key={card.id} data={card} />
+      ))}
       <CreateTodo />
     </div>
   );

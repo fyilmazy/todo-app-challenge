@@ -1,33 +1,40 @@
-import React, { useState, useEffect, createContext } from "react";
-import { newId } from "../utils/idCreator";
+import React, { useState, useEffect, createContext, useContext } from "react";
+import { MainContext } from "./MainContext";
 export const TodoContext = createContext();
 
-// Card = {
-//   id: uuidv4 string
-//   title: string
-//   category: enum
-//   todos: Todo[]
-// }
-
-// Todo = {
-//   id: uuidv4 string
-//   text: string
-//   isComplete: boolean
-// }
-
 export const CATEGORY = {
-  EVERYTHING: "EVERYTHING",
+  ALL: "ALL",
   WORK: "WORK",
   PERSONAL: "PERSONAL",
   SCHOOL: "SCHOOL",
 };
 
+// change name to CardProvider veya DataProvider
 export const TodoProvider = ({ children }) => {
-  const [cards, setCards] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const { updateCards, userData } = useContext(MainContext);
+  const [cards, setCards] = useState(userData?.cards || []);
+  const [selectedCategory, setSelectedCategory] = useState(CATEGORY.ALL);
+
+  useEffect(() => {
+    console.log(cards);
+    updateCards(cards);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cards]);
 
   const addCard = (newCard) => {
     setCards([...cards, newCard]);
+  };
+
+  const updateCard = (newCard) => {
+    const newCardIndex = cards.findIndex((card) => card.id === newCard.id);
+    let newCards = [...cards];
+    newCards[newCardIndex] = newCard;
+    setCards(newCards);
+  };
+
+  const deleteCard = (id) => {
+    const newCards = cards.filter((card) => card.id !== id);
+    setCards(newCards);
   };
 
   const values = {
@@ -35,11 +42,11 @@ export const TodoProvider = ({ children }) => {
     CATEGORY,
     setCards,
     addCard,
+    updateCard,
+    deleteCard,
     selectedCategory,
     setSelectedCategory,
   };
-
-  useEffect(() => {}, []);
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;
 };

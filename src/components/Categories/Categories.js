@@ -1,42 +1,30 @@
 import React, { useContext } from "react";
 import styles from "./Categories.module.scss";
-import { TodoContext } from "../../context/TodoContext";
-import { v4 as uuidv4 } from "uuid";
+import { TodoContext, CATEGORY } from "../../context/TodoContext";
 
 const Categories = () => {
   const { selectedCategory, setSelectedCategory } = useContext(TodoContext);
+  const categories = Object.values(CATEGORY);
 
-  const selectCategory = () => {};
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         <p>Categories</p>
       </div>
       <ul className={styles.categoryList}>
-        <li key={uuidv4()} className={styles.categoryItem}>
-          <label htmlFor="everything">
-            <input name="everyting" type="checkbox" />
-            Everything
-          </label>
-        </li>
-        <li key={uuidv4()} className={styles.categoryItem}>
-          <label htmlFor="everything">
-            <input name="everyting" type="checkbox" />
-            Work
-          </label>
-        </li>
-        <li key={uuidv4()} className={styles.categoryItem}>
-          <label htmlFor="everything">
-            <input name="everyting" type="checkbox" />
-            Personal
-          </label>
-        </li>
-        <li key={uuidv4()} className={styles.categoryItem}>
-          <label htmlFor="everything">
-            <input name="everyting" type="checkbox" />
-            School
-          </label>
-        </li>
+        {categories.map((category) => (
+          <li key={category} className={styles.categoryItem}>
+            <label htmlFor={category}>
+              <input
+                name={category}
+                type="checkbox"
+                checked={category === selectedCategory}
+                onChange={() => setSelectedCategory(category)}
+              />
+              {category}
+            </label>
+          </li>
+        ))}
       </ul>
     </div>
   );

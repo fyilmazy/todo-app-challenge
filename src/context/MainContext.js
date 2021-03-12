@@ -36,6 +36,13 @@ export const MainProvider = ({ children }) => {
     }
   };
 
+  const updateCards = (cards) => {
+    console.log("MainCtx cards", cards);
+    const newUserData = { ...userData, cards };
+    setUserData(newUserData);
+    localStorageSet("userData", newUserData);
+  };
+
   useEffect(() => {
     checkLoginStatus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,6 +56,7 @@ export const MainProvider = ({ children }) => {
     // Functions
     handleLogin,
     userLogOut,
+    updateCards,
   };
   return <MainContext.Provider value={values}>{children}</MainContext.Provider>;
 };
