@@ -43,8 +43,15 @@ export const MainProvider = ({ children }) => {
     localStorageSet("userData", newUserData);
   };
 
-  const changeName = (values) => {
-    setUserData({ name: values.name, surname: values.surname, ...userData });
+  const updateName = (formValues) => {
+    console.log("Values", formValues);
+    const newUserData = {
+      ...userData,
+      name: formValues.name,
+      surname: formValues.surname,
+    };
+    setUserData(newUserData);
+    localStorageSet("userData", newUserData);
   };
 
   useEffect(() => {
@@ -61,7 +68,7 @@ export const MainProvider = ({ children }) => {
     handleLogin,
     userLogOut,
     updateCards,
-    changeName,
+    updateName,
   };
   return <MainContext.Provider value={values}>{children}</MainContext.Provider>;
 };

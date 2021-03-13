@@ -20,6 +20,7 @@ const CreateTodo = () => {
         text: "Example Todo",
         id: uuidv4(),
         isComplete: false,
+        isSaved: false,
       },
     ],
   };

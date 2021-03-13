@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.scss";
-import { v4 as uuidv4 } from "uuid";
 
 const Nav = () => {
   return (

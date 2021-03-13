@@ -6,7 +6,13 @@ import { makeStyles } from "@material-ui/core/styles";
 const SettingsPage = () => {
   const [formValues, setFormValues] = useState({ name: "", surname: "" });
   const [isFormValid, setIsFormValid] = useState(null);
-  const { userData, setUserData, changeName } = useContext(MainContext);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const { updateName } = useContext(MainContext);
+
+  const submitHandler = () => {
+    updateName(formValues);
+    setIsUpdated(true);
+  };
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -65,15 +71,6 @@ const SettingsPage = () => {
   }));
 
   const classes = useStyles();
-  function getModalStyle() {
-    const top = 50;
-    const left = 50;
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    };
-  }
 
   return (
     <div className={classes.container}>
@@ -119,12 +116,17 @@ const SettingsPage = () => {
             className={classes.textField}
           />
 
-          <Button variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => submitHandler()}
+          >
             Submit
           </Button>
+          {isUpdated && <p>Setting successfully updated!</p>}
           {isFormValid === false && (
             <div className={classes.formWarning}>
-              <p>Please fill the form correctly.</p>
+              <p>"Please fill the form correctly.</p>
             </div>
           )}
         </form>

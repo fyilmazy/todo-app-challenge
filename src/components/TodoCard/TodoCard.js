@@ -17,7 +17,7 @@ const TodoCard = ({ data, classes }) => {
   const { updateCard, deleteCard } = useContext(TodoContext);
   const [localCard, setLocalCard] = useState(data);
   const [newTodoText, setNewTodoText] = useState("");
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(localCard.isSaved);
   const categories = Object.values(CATEGORY);
 
   console.log("localCard:", localCard);
@@ -42,6 +42,7 @@ const TodoCard = ({ data, classes }) => {
         ],
       };
     });
+    setNewTodoText("");
   };
 
   const removeTodoItem = (id) => {
@@ -60,9 +61,26 @@ const TodoCard = ({ data, classes }) => {
     });
   };
 
-  const saveCard = () => {
-    setIsSaved(true);
-    updateCard(localCard);
+  const saveCardStatusHandler = (boolValue) => {
+    setIsSaved(boolValue);
+    let newLocalCard = { ...localCard, isSaved: boolValue };
+    setLocalCard(newLocalCard);
+    updateCard(newLocalCard);
+  };
+
+  const checkTodoItemHandler = (id, boolValue) => {
+    let newTodos = localCard.todos;
+    const todoItemIndex = newTodos.findIndex((item) => item.id === id);
+    newTodos[todoItemIndex].isComplete = !boolValue;
+    setLocalCard((localCard) => {
+      return { ...localCard, todos: newTodos };
+    });
+  };
+
+  const changeCategory = (category) => {
+    setLocalCard((localCard) => {
+      return { ...localCard, category };
+    });
   };
 
   return (
@@ -89,7 +107,11 @@ const TodoCard = ({ data, classes }) => {
           {localCard.todos.map((todo) => {
             return (
               <li key={todo.id} className={classes.listItem}>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  checked={!todo.isComplete}
+                  onClick={() => checkTodoItemHandler(todo.id, todo.isComplete)}
+                />
                 <input
                   className={classes.todoInput}
                   value={todo.text}
@@ -124,14 +146,26 @@ const TodoCard = ({ data, classes }) => {
             <div className={classes.category}>
               <FormControl className={classes.formControl}>
                 <InputLabel id="categories">Category</InputLabel>
-                <Select native labelId="categories" id="dage-native-simple">
-                  <option aria-label={data.category} value="" />
+                <Select
+                  native
+                  inputProps={{
+                    name: "age",
+                    id: "age-native-simple",
+                  }}
+                  labelId="categories"
+                  id="dage-native-simple"
+                  onChange={(e) => changeCategory(e.target.value)}
+                  defaultValue={localCard.category}
+                >
+                  <option aria-label={data.category} />
                   {categories.map((categoryItem, i) => {
-                    return (
-                      <option key={i} value={categoryItem}>
-                        {categoryItem}
-                      </option>
-                    );
+                    if (categoryItem !== "ALL") {
+                      return (
+                        <option key={i} value={categoryItem}>
+                          {categoryItem}
+                        </option>
+                      );
+                    }
                   })}
                 </Select>
               </FormControl>
@@ -141,11 +175,11 @@ const TodoCard = ({ data, classes }) => {
       </CardContent>
 
       {!isSaved ? (
-        <Button size="small" onClick={() => saveCard()}>
+        <Button size="small" onClick={() => saveCardStatusHandler(true)}>
           SAVE
         </Button>
       ) : (
-        <Button size="small" onClick={() => setIsSaved(false)}>
+        <Button size="small" onClick={() => saveCardStatusHandler(false)}>
           EDIT
         </Button>
       )}
