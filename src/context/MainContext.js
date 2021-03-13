@@ -25,6 +25,11 @@ export const MainProvider = ({ children }) => {
     console.log("user logout successfull");
   };
 
+  const updateCategories = (categoryData) => {
+    let newUserData = { ...userData, categories: categoryData };
+    setUserData(newUserData);
+  };
+
   const checkLoginStatus = () => {
     if (userData) {
       console.log("user login detected");
@@ -37,7 +42,6 @@ export const MainProvider = ({ children }) => {
   };
 
   const updateCards = (cards) => {
-    console.log("MainCtx cards", cards);
     const newUserData = { ...userData, cards };
     setUserData(newUserData);
     localStorageSet("userData", newUserData);
@@ -69,6 +73,7 @@ export const MainProvider = ({ children }) => {
     userLogOut,
     updateCards,
     updateName,
+    updateCategories,
   };
   return <MainContext.Provider value={values}>{children}</MainContext.Provider>;
 };

@@ -18,9 +18,8 @@ const TodoCard = ({ data, classes }) => {
   const [localCard, setLocalCard] = useState(data);
   const [newTodoText, setNewTodoText] = useState("");
   const [isSaved, setIsSaved] = useState(localCard.isSaved);
-  const categories = Object.values(CATEGORY);
-
-  console.log("localCard:", localCard);
+  const { categories } = useContext(TodoContext);
+  const categoriesArr = Object.values(categories);
 
   const updateCardTitle = (title) => {
     setLocalCard((localCard) => {
@@ -110,7 +109,9 @@ const TodoCard = ({ data, classes }) => {
                 <input
                   type="checkbox"
                   checked={!todo.isComplete}
-                  onClick={() => checkTodoItemHandler(todo.id, todo.isComplete)}
+                  onChange={() =>
+                    checkTodoItemHandler(todo.id, todo.isComplete)
+                  }
                 />
                 <input
                   className={classes.todoInput}
@@ -158,7 +159,7 @@ const TodoCard = ({ data, classes }) => {
                   defaultValue={localCard.category}
                 >
                   <option aria-label={data.category} />
-                  {categories.map((categoryItem, i) => {
+                  {categoriesArr.map((categoryItem, i) => {
                     if (categoryItem !== "ALL") {
                       return (
                         <option key={i} value={categoryItem}>

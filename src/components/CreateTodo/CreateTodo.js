@@ -9,12 +9,12 @@ import Typography from "@material-ui/core/Typography";
 import { v4 as uuidv4 } from "uuid";
 
 const CreateTodo = () => {
-  const { CATEGORY, addCard } = useContext(TodoContext);
+  const { categories, addCard } = useContext(TodoContext);
 
   const newCard = {
     title: "",
     id: uuidv4(),
-    category: CATEGORY.WORK,
+    category: categories.WORK,
     todos: [
       {
         text: "Example Todo",
@@ -27,20 +27,16 @@ const CreateTodo = () => {
 
   const useStyles = makeStyles({
     root: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
       minWidth: 275,
       margin: "auto 10px",
-      minHeight: 244,
-    },
-    bullet: {
-      display: "inline-block",
-      margin: "0 2px",
-      transform: "scale(0.8)",
+      minHeight: "100%",
     },
     title: {
       fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
     },
     createButton: {
       margin: "auto",

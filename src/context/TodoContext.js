@@ -13,10 +13,12 @@ export const CATEGORY = {
 export const TodoProvider = ({ children }) => {
   const { updateCards, userData } = useContext(MainContext);
   const [cards, setCards] = useState(userData?.cards || []);
+  const [categories, setCategories] = useState(
+    userData?.categories || { ...CATEGORY },
+  );
   const [selectedCategory, setSelectedCategory] = useState(CATEGORY.ALL);
 
   useEffect(() => {
-    console.log(cards);
     updateCards(cards);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cards]);
@@ -46,6 +48,8 @@ export const TodoProvider = ({ children }) => {
     deleteCard,
     selectedCategory,
     setSelectedCategory,
+    categories,
+    setCategories,
   };
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;

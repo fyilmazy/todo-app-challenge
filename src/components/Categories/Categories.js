@@ -1,10 +1,27 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Categories.module.scss";
-import { TodoContext, CATEGORY } from "../../context/TodoContext";
+import { TodoContext } from "../../context/TodoContext";
+import { MainContext } from "../../context/MainContext";
+import { Button, TextField } from "@material-ui/core";
 
 const Categories = () => {
-  const { selectedCategory, setSelectedCategory } = useContext(TodoContext);
-  const categories = Object.values(CATEGORY);
+  const [addCategoryText, setAddCategoryText] = useState("");
+  const {
+    selectedCategory,
+    setSelectedCategory,
+    categories,
+    setCategories,
+  } = useContext(TodoContext);
+  const { updateCategories } = useContext(MainContext);
+  const categoriesArr = Object.values(categories);
+
+  const addNewCategory = (categoryText) => {
+    let newCategories = { ...categories, [categoryText]: categoryText };
+    console.log(newCategories);
+    setCategories(newCategories);
+    updateCategories(newCategories);
+    setAddCategoryText("");
+  };
 
   return (
     <div className={styles.container}>
@@ -12,7 +29,7 @@ const Categories = () => {
         <p>Categories</p>
       </div>
       <ul className={styles.categoryList}>
-        {categories.map((category) => (
+        {categoriesArr.map((category) => (
           <li key={category} className={styles.categoryItem}>
             <label htmlFor={category}>
               <input
@@ -26,6 +43,21 @@ const Categories = () => {
           </li>
         ))}
       </ul>
+      <div>
+        <TextField
+          className={styles.addTodo}
+          placeholder="Add new..."
+          onChange={(e) => setAddCategoryText(e.target.value)}
+          value={addCategoryText}
+        />
+        <Button
+          size="small"
+          onClick={() => addNewCategory(addCategoryText.toString())}
+          className={styles.addTodoButton}
+        >
+          Add
+        </Button>
+      </div>
     </div>
   );
 };

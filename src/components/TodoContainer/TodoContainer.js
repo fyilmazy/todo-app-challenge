@@ -5,13 +5,17 @@ import { TodoContext } from "../../context/TodoContext";
 import TodoCard from "../TodoCard/TodoCard";
 
 const TodoContainer = () => {
-  const { cards } = useContext(TodoContext);
+  const { cards, selectedCategory } = useContext(TodoContext);
 
   return (
     <div className={styles.todoContainer}>
-      {cards.map((card, index) => (
-        <TodoCard key={card.id} data={card} />
-      ))}
+      {cards.map(
+        (card, index) =>
+          (selectedCategory === "ALL" ||
+            card.category === selectedCategory) && (
+            <TodoCard key={card.id} data={card} />
+          ),
+      )}
       <CreateTodo />
     </div>
   );

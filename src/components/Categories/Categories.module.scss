@@ -18,3 +18,56 @@
     }
   }
 }
+
+.root {
+  min-width: 275px;
+  margin: auto 10px;
+  min-height: 244px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bullet {
+  display: inline-block;
+  margin: 0 2px;
+  transform: scale(0.8);
+}
+title {
+  font-size: 17px;
+  display: flex;
+  margin-left: 7px;
+  margin-bottom: 15px;
+  margin-right: 70px;
+}
+.addTodo {
+  font-size: 14px;
+}
+.pos {
+  margin-bottom: 12px;
+}
+.createButton {
+  margin: auto;
+}
+.category {
+  font-size: 10px;
+}
+.listItem {
+  display: flex;
+}
+.todoRemove {
+  margin-left: 10px;
+}
+.addTodoButton {
+  background: rgb(184, 248, 168);
+  max-width: 5px;
+}
+.todoInput {
+  border: none;
+}
+.formControl {
+  margin: 5px;
+  min-width: 120px;
+}
+.selectEmpty {
+  margin-top: 5px;
+}

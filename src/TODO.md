@@ -1,4 +1,0 @@
-- MainProvider icindeki localStorage fonksiyonlari -> utils/localStorage tasinacak
-- Eger istenirse, localStorage helper baska kodlar kullanilabilir, farketmez
-- setSurName -> hepsini duzelt -> setSurname
-- userLogOut -> logoutUser

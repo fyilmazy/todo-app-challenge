@@ -2,7 +2,7 @@ export const styles = {
   root: {
     minWidth: 275,
     margin: "auto 10px",
-    minHeight: 244,
+    minHeight: 290,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -50,5 +50,9 @@ export const styles = {
   },
   selectEmpty: {
     marginTop: "5px",
+  },
+  backdrop: {
+    zIndex: 2,
+    color: "#fff",
   },
 };
