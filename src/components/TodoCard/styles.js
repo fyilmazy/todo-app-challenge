@@ -2,7 +2,10 @@ export const styles = {
   root: {
     minWidth: 275,
     margin: "auto 10px",
-    minHeight: 200,
+    minHeight: 244,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   bullet: {
     display: "inline-block",
@@ -40,5 +43,12 @@ export const styles = {
   },
   todoInput: {
     border: "none",
+  },
+  formControl: {
+    margin: "5px",
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: "5px",
   },
 };

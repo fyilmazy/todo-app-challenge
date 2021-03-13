@@ -43,6 +43,10 @@ export const MainProvider = ({ children }) => {
     localStorageSet("userData", newUserData);
   };
 
+  const changeName = (values) => {
+    setUserData({ name: values.name, surname: values.surname, ...userData });
+  };
+
   useEffect(() => {
     checkLoginStatus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,6 +61,7 @@ export const MainProvider = ({ children }) => {
     handleLogin,
     userLogOut,
     updateCards,
+    changeName,
   };
   return <MainContext.Provider value={values}>{children}</MainContext.Provider>;
 };

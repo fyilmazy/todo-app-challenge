@@ -1,8 +1,16 @@
 import React, { useState, useContext } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { styles } from "./styles";
-import { Card, CardContent, Button, TextField } from "@material-ui/core";
-import { TodoContext } from "../../context/TodoContext";
+import {
+  Card,
+  CardContent,
+  Button,
+  TextField,
+  InputLabel,
+  Select,
+  FormControl,
+} from "@material-ui/core";
+import { TodoContext, CATEGORY } from "../../context/TodoContext";
 import { v4 as uuidv4 } from "uuid";
 
 const TodoCard = ({ data, classes }) => {
@@ -10,6 +18,7 @@ const TodoCard = ({ data, classes }) => {
   const [localCard, setLocalCard] = useState(data);
   const [newTodoText, setNewTodoText] = useState("");
   const [isSaved, setIsSaved] = useState(false);
+  const categories = Object.values(CATEGORY);
 
   console.log("localCard:", localCard);
 
@@ -112,10 +121,25 @@ const TodoCard = ({ data, classes }) => {
             >
               +
             </Button>
+            <div className={classes.category}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="categories">Category</InputLabel>
+                <Select native labelId="categories" id="dage-native-simple">
+                  <option aria-label={data.category} value="" />
+                  {categories.map((categoryItem, i) => {
+                    return (
+                      <option key={i} value={categoryItem}>
+                        {categoryItem}
+                      </option>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
           </>
         )}
-        <div className={classes.category}>{data.category}</div>
       </CardContent>
+
       {!isSaved ? (
         <Button size="small" onClick={() => saveCard()}>
           SAVE

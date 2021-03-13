@@ -101,12 +101,10 @@ const UserDialog = () => {
           value={surname}
         />
         <button type="submit">Submit</button>
-        {isFormValid === false ? (
+        {isFormValid === false && (
           <div className={classes.formWarning}>
             <p>Please fill the form correctly.</p>
           </div>
-        ) : (
-          ""
         )}
       </form>
     </div>

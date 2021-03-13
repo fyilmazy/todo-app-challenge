@@ -7,14 +7,14 @@ const Nav = () => {
   return (
     <div className={styles.nav}>
       <ul>
-        <Link to="/settings" key={uuidv4()}>
+        <Link to="/">
           <div className={styles.links}>
-            <li key={uuidv4()}>Settings</li>
+            <li>Home</li>
           </div>
         </Link>
-        <Link to="/" key={uuidv4()}>
+        <Link to="/settings">
           <div className={styles.links}>
-            <li key={uuidv4()}>Dashboard</li>
+            <li>Settings</li>
           </div>
         </Link>
       </ul>
